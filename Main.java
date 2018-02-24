@@ -34,6 +34,28 @@ public class Main {
     }
 
     public static void main(String[] args){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Manage Students(Y/N)?: ");
+            String manage = input.next();
+            if (manage.equals("Y")){
+                System.out.print("Add student(Y/N)?: ");
+                String add = input.next();
+                if (add.equals("Y")) {
+                    List firstNames = new ArrayList();
+                    firstNames.add(getFirstName());
+
+                    List lastNames = new ArrayList();
+                    lastNames.add(getLastName());
+
+                    List studentNumbers = new ArrayList();
+                    studentNumbers.add(getStudentNumber());
+
+                    List graduatingYears = new ArrayList();
+                    graduatingYears.add(getGraduatingYear());
+                }
+            }
+
+
 
     }
 }
