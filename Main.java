@@ -64,8 +64,9 @@ public class main {
     }
     
     
-    // returns index number of student given his full name, if name is not found, returns -1
-    private static int indexOfStudent(List fullname) {
+    // returns index number of student given his full name from the class list, if name is not found, returns -1
+    // call command is int x = indexOfStudent(classList);
+    private static int indexOfStudent(List classList) {
         Scanner input = new Scanner(System.in);
 
         // get name of student to be found
@@ -73,19 +74,22 @@ public class main {
         String student = input.nextLine();
 
         // loop within the 2d list to first make the full name then check if it matches up with input
-        for(int i=0; i<fullname.size(); i++) {
+        for(int i = 0; i < classList.size(); i++) {
+            
             // string to collect full name
             String name = "";
 
             // first and last names are stored within the first 2 indexes of inner list
             for (int j = 0; j < 2; j++) {
-                List first = (List) fullname.get(i);
+                
+                // check each inner list within classList
+                List first = (List) classList.get(i);
 
-                // retrieves the first name first then last name and adds them together
+                // retrieves the first name first then last name from inner list and adds them together
                 String full = " " + first.get(j).toString();
                 name += full;
-
         }
+        
         System.out.println("you entered: " + name.trim());
             
         // check if entered name is the same as retrieved name, then return the index of that name if found    
