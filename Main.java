@@ -90,6 +90,7 @@ public class main {
             String options = input.nextLine();
 
             if (options.equals("1")) {
+                // this stores the list returned by entering all the data into the full class list
                 classList.add(addStudentInfo(firstNames, lastNames, studentNumbers, graduatingYears));
 
 
