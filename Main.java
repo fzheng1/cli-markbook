@@ -33,24 +33,26 @@ public class Main {
         return graduatingYear;
     }
 
-    public static void main(String[] args){
+     public static void main(String[] args){
+        List firstNames = new ArrayList();
+        List lastNames = new ArrayList();
+        List studentNumbers = new ArrayList();
+        List graduatingYears = new ArrayList();
+
         Scanner input = new Scanner(System.in);
         System.out.print("Manage Class List, input marks: ");
         String manage = input.next();
+
         if (manage.equals("manage class list") || manage.equals("Manage Class List")){
             System.out.print("Add, remove, edit: ");
             String edit = input.next();
             if (edit.equals("add") || edit.equals("Add"))  {
-                List firstNames = new ArrayList();
                 firstNames.add(getFirstName());
 
-                List lastNames = new ArrayList();
                 lastNames.add(getLastName());
 
-                List studentNumbers = new ArrayList();
                 studentNumbers.add(getStudentNumber());
 
-                List graduatingYears = new ArrayList();
                 graduatingYears.add(getGraduatingYear());
                 }
             }
