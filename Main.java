@@ -34,24 +34,24 @@ public class Main {
     }
 
     public static void main(String[] args){
-            Scanner input = new Scanner(System.in);
-            System.out.print("Manage Students(Y/N)?: ");
-            String manage = input.next();
-            if (manage.equals("Y")){
-                System.out.print("Add student(Y/N)?: ");
-                String add = input.next();
-                if (add.equals("Y")) {
-                    List firstNames = new ArrayList();
-                    firstNames.add(getFirstName());
+        Scanner input = new Scanner(System.in);
+        System.out.print("Manage Class List, input marks: ");
+        String manage = input.next();
+        if (manage.equals("manage class list") || manage.equals("Manage Class List")){
+            System.out.print("Add, remove, edit: ");
+            String edit = input.next();
+            if (edit.equals("add") || edit.equals("Add"))  {
+                List firstNames = new ArrayList();
+                firstNames.add(getFirstName());
 
-                    List lastNames = new ArrayList();
-                    lastNames.add(getLastName());
+                List lastNames = new ArrayList();
+                lastNames.add(getLastName());
 
-                    List studentNumbers = new ArrayList();
-                    studentNumbers.add(getStudentNumber());
+                List studentNumbers = new ArrayList();
+                studentNumbers.add(getStudentNumber());
 
-                    List graduatingYears = new ArrayList();
-                    graduatingYears.add(getGraduatingYear());
+                List graduatingYears = new ArrayList();
+                graduatingYears.add(getGraduatingYear());
                 }
             }
 
