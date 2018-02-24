@@ -6,7 +6,7 @@ public class Main {
     private static String getFirstName(){
         Scanner input = new Scanner(System.in);
         System.out.print("Enter first name: ");
-        String firstName = input.next();
+        String firstName = input.nextLine);
 
         return firstName;
     }
@@ -14,14 +14,14 @@ public class Main {
     private static String getLastName(){
         Scanner input = new Scanner(System.in);
         System.out.print("Enter last name: ");
-        String lastName = input.next();
+        String lastName = input.nextLine();
 
         return lastName;
     }
     private static int getStudentNumber(){
         Scanner input = new Scanner(System.in);
         System.out.print("Enter student ID: ");
-        int studentNumber = input.nextInt();
+        int studentNumber = Integer.parseInt(input.next());
 
         return studentNumber;
     }
@@ -29,7 +29,7 @@ public class Main {
     private static int getGraduatingYear(){
         Scanner input = new Scanner(System.in);
         System.out.print("Enter graduating year: ");
-        int  graduatingYear = input.nextInt();
+        int  graduatingYear = Integer.parseInt(input.next());
 
         return graduatingYear;
     }
@@ -42,11 +42,11 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
         System.out.print("Manage Class List, input marks: ");
-        String manage = input.next();
+        String manage = input.nextLine();
 
         if (manage.equals("manage class list") || manage.equals("Manage Class List")){
             System.out.print("Add, remove, edit: ");
-            String edit = input.next();
+            String edit = input.nextLine();
             if (edit.equals("add") || edit.equals("Add"))  {
                 firstNames.add(getFirstName());
 
