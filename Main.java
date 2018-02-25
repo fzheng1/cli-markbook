@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class main {
 
-    private static String getFirstName(){
+    private static String getFirstName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter first name: ");
         String firstName = input.nextLine();
@@ -12,14 +12,15 @@ public class main {
         return firstName;
     }
 
-    private static String getLastName(){
+    private static String getLastName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter last name: ");
         String lastName = input.next();
 
         return lastName;
     }
-    private static String getStudentNumber(){
+
+    private static String getStudentNumber() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter student ID: ");
         int studentNumber = input.nextInt();
@@ -27,17 +28,17 @@ public class main {
         return Integer.toString(studentNumber);
     }
 
-    private static String getGraduatingYear(){
+    private static String getGraduatingYear() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter graduating year: ");
-        int  graduatingYear = input.nextInt();
+        int graduatingYear = input.nextInt();
 
         return Integer.toString(graduatingYear);
     }
 
 
     // gets all info for a certain student from the user and returns a list of the student's info
-    private static List addStudentInfo(List firstNames, List lastNames, List studentNumbers, List graduatingYears) {
+    private static List addStudentInfo() {
         System.out.println("\nAdd student information");
 
         List info = new ArrayList();
@@ -59,34 +60,39 @@ public class main {
         graduatingYears.add(gradYear);
         */
 
-        System.out.println("You have added: " + nameF + " " + nameL+ " " + studentNo+ " " + gradYear);
+        System.out.println("You have added: " + nameF + " " + nameL + " " + studentNo + " " + gradYear);
         return info;
     }
-    private static List getMarks(){
-  
-      //ask user how many marks are being entered
-      Scanner input = new Scanner(System.in);
-      System.out.print("How many assignemt marks are being entered?: ");
-      int numMarks = input.nextInt();
 
-      List studentMarks = new ArrayList();
+    private static List getMarks() {
 
-      //allows user to continue entering marks for number specified above
-      for (int i=0; i < numMarks; i++){
+        //ask user how many marks are being entered
+        List empty = new ArrayList();
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many assignemt marks are being entered?: ");
+        int numMarks = input.nextInt();
 
-        System.out.print("What is the mark for assignment " + (i+1) + "?: ");
-        int grade = input.nextInt();
-        studentMarks.add(grade);
+        List studentMarks = new ArrayList();
 
-        System.out.println(studentMarks);
+        //allows user to continue entering marks for number specified above
+        for (int i = 0; i < numMarks; i++) {
 
-    
-   }
-  
-    
-    // returns index number of student given his full name from the class list, if name is not found, returns -1
-    // call command is int x = indexOfStudent(classList);
-    private static int indexOfStudent(List classList) {
+            System.out.print("What is the mark for assignment " + (i + 1) + "?: ");
+            int grade = input.nextInt();
+            studentMarks.add(grade);
+
+            System.out.println(studentMarks);
+
+
+
+        }
+        return studentMarks;
+    }
+
+
+        // returns index number of student given his full name from the class list, if name is not found, returns -1
+        // call command is int x = indexOfStudent(classList);
+    private static int indexOfStudent (List classList){
         Scanner input = new Scanner(System.in);
 
         // get name of student to be found
@@ -94,36 +100,77 @@ public class main {
         String student = input.nextLine();
 
         // loop within the 2d list to first make the full name then check if it matches up with input
-        for(int i = 0; i < classList.size(); i++) {
-            
+        for (int i = 0; i < classList.size(); i++) {
+
             // string to collect full name
             String name = "";
 
             // first and last names are stored within the first 2 indexes of inner list
             for (int j = 0; j < 2; j++) {
-                
+
                 // check each inner list within classList
                 List first = (List) classList.get(i);
 
                 // retrieves the first name first then last name from inner list and adds them together
                 String full = " " + first.get(j).toString();
                 name += full;
-        }
-        
-        System.out.println("you entered: " + name.trim());
-            
-        // check if entered name is the same as retrieved name, then return the index of that name if found    
-        if (name.trim().equals(student)) {
-            return i;
-        }
+            }
+
+            System.out.println("you entered: " + name.trim());
+
+            // check if entered name is the same as retrieved name, then return the index of that name if found
+            if (name.trim().equals(student)) {
+                return i;
+            }
 
         }
         // if name not found in class list return -1
         return -1;
     }
 
+    private static List addMarklist(List classList) {
+        /*
+        List students = new ArrayList();
+        List bigstudents = new ArrayList();
+        List biggerstudents = new ArrayList();
 
-    public static void main(String[] args){
+        for (int i = 0; i < 10; i++) {
+            students.add("a");
+        }
+        for (int i = 0; i < 5; i++) {
+            bigstudents.add(students);
+        }
+
+
+        System.out.println(bigstudents);
+
+
+
+        for (int i = 0; i < 10; i++) {
+            biggerstudents.add("a");
+        }
+        */
+        List markList = new ArrayList();
+        System.out.println(classList);
+
+        int index = indexOfStudent(classList);
+
+        for (int i = 0; i < 10; i++) {
+            markList.add("");
+        }
+        System.out.println(markList);
+
+        markList.add(index, getMarks());
+
+        System.out.println(markList);
+
+
+
+        return markList;
+    }
+
+
+    public static void main (String[]args){
         List firstNames = new ArrayList();
         List lastNames = new ArrayList();
         List studentNumbers = new ArrayList();
@@ -131,6 +178,7 @@ public class main {
 
         // 2d list in which each indexed list has the student's name, number and grad date
         List classList = new ArrayList();
+        List markList = new ArrayList();
 
         Scanner input = new Scanner(System.in);
 
@@ -149,7 +197,7 @@ public class main {
 
             if (options.equals("1")) {
                 // this stores the list returned by entering all the data into the full class list
-                classList.add(addStudentInfo(firstNames, lastNames, studentNumbers, graduatingYears));
+                classList.add(addStudentInfo());
 
 
             }
@@ -157,7 +205,8 @@ public class main {
         }
         System.out.println(classList.toString());
 
-
+        markList = addMarklist(classList);
+        System.out.println(markList);
 
 
     }
