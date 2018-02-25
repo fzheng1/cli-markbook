@@ -250,16 +250,7 @@ public class main {
 
 
     }
-    private static String loginInformation(){
-    Scanner input = new Scanner(System.in);
-    System.out.println("Login email: " + getFirstName() + "." + getLastName() + getGraduatingYear().substring(getGraduatingYear().length()-2) + "@ycdsbk12.ca");
-    }
-    private static String passwordInformation(){
-    Scanner input = new Scanner(System.in);
-    String s1 = getFirstName().charAt(0).toUppercase();
-    String s2 = getLastName().charAt(0).toLowercase();
-    System.out.println(s1 + s2 + getStudentNumber());
-    }
+    
 }
 
 
