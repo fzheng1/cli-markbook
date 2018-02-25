@@ -228,48 +228,83 @@ public class main {
         return (upperfirstinitial + lowerlastinitial + studentNumber);
     }
     
-    public static void main (String[]args){
-        List firstNames = new ArrayList();
-        List lastNames = new ArrayList();
-        List studentNumbers = new ArrayList();
-        List graduatingYears = new ArrayList();
-
+    public static void main (String[] args){
+        
         // 2d list in which each indexed list has the student's name, number and grad date
         List classList = new ArrayList();
         List markList = new ArrayList();
 
         Scanner input = new Scanner(System.in);
 
-        // User chooses what they want to do
-        System.out.println("1) Manage Class List \n2) Input marks");
-        System.out.print("Enter 1 or 2: ");
-        String manage = input.nextLine();
+        boolean done = false;
 
+        while (!done) {
+            // User chooses what they want to do
+            System.out.println("1) Manage Class List \n2) Manage Marks \n3) Display");
+            System.out.print("Enter 1, 2, 3: ");
+            String manage = input.nextLine();
 
-        if (manage.equals("1")) {
+            if (manage.equals("1")) {
 
-            // user chooses how they want to manipulate the class list
-            System.out.println("1) Add Student Info \n2) Remove Student \n3) Edit ");
-            System.out.print("Enter 1, 2 or 3: ");
-            String options = input.nextLine();
+                // user chooses how they want to manipulate the class list
+                System.out.println("1) Add Student Info \n2) Remove Student \n3) Edit ");
+                System.out.print("Enter 1, 2 or 3: ");
+                String options = input.nextLine();
 
-            if (options.equals("1")) {
-                // this stores the list returned by entering all the data into the full class list
-                classList.add(addStudentInfo());
-
-
+                if (options.equals("1")) {
+                    List empty = new ArrayList();
+                    // this stores the list returned by entering all the data into the full class list
+                    classList.add(addStudentInfo());
+                    markList.add(empty);
+                }
             }
 
+            else if (manage.equals("2")) {
+                System.out.println("1) Add Marks \n2) Remove Marks \n3) Edit");
+                System.out.print("Enter 1, 2, or 3: ");
+                String options = input.nextLine();
+
+                if (options.equals("1")) {
+
+                    markList.set(indexOfStudent(classList), getMarks());
+                    System.out.println(markList);
+                }
+            }
+
+            else if (manage.equals("3")) {
+                System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
+                System.out.println("4) Display Student Average");
+                System.out.println("Enter 1, 2, 3, 4: ");
+                String options = input.nextLine();
+
+                if (options.equals("1")) {
+                    System.out.println(classList);
+                }
+
+                else if (options.equals("2")) {
+                    List studentMarks = correspondingMark(classList, markList);
+                    System.out.println(studentMarks);
+                }
+
+                else if (options.equals("3")) {
+                    String firstname = getFirstName();
+                    String lastname = getLastName();
+                    String studentnumber = getStudentNumber();
+                    String gradYear = getGraduatingYear();
+
+                    String username = username(firstname, lastname, gradYear);
+                    String password = passwordInformation(firstname, lastname, studentnumber);
+                    System.out.println(username);
+                    System.out.println("Password: " + password);
+                }
+
+                else if (options.equals("4")) {
+                    double avg = studentAverage(correspondingMark(classList, markList));
+                    System.out.println("This student's average is: " + avg);
+                }
+            }
         }
-        System.out.println(classList.toString());
-
-        markList = addMarklist(classList);
-        System.out.println(markList);
-
 
     }
     
-}
-
-
 }
