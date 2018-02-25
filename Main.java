@@ -169,6 +169,17 @@ public class main {
         System.out.print(studentAverage);
         return studentAverage;
     }
+    
+    private static List correspondingMark(List classList, List markList) {
+        List studentmarks = new ArrayList();
+
+        int index = indexOfStudent(classList);
+
+        studentmarks = (List) markList.get(index);
+
+        return studentmarks;
+
+    }
 
     public static void main (String[]args){
         List firstNames = new ArrayList();
