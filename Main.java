@@ -253,7 +253,7 @@ public class main {
                 }
 
                 else if (options.equals("3")) {
-                    classList.set(indexOfStudent(), addStudentInfo());
+                    classList.set(indexOfStudent(classList), addStudentInfo());
                 }
             }
 
