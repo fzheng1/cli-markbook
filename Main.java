@@ -217,6 +217,17 @@ public class main {
         return ("Login email: " + firstname + "." + lastname + year.substring(year.length()-2) + "@ycdsbk12.ca");
     }
     
+    private static String passwordInformation(){
+
+        String firstname = getFirstName();
+        String lastname = getLastName();
+        String studentNumber = getStudentNumber();
+        
+        String upperfirstinitial = String.valueOf(Character.toUpperCase(firstname.charAt(0)));
+        String lowerlastinitial = String.valueOf(Character.toLowerCase(lastname.charAt(0)));
+        return (upperfirstinitial + lowerlastinitial + studentNumber);
+    }
+    
     public static void main (String[]args){
         List firstNames = new ArrayList();
         List lastNames = new ArrayList();
