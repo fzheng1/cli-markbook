@@ -210,6 +210,13 @@ public class main {
         return dangerzone.trim();
     }
     
+    private static String username(){
+        String firstname = getFirstName();
+        String lastname = getLastName();
+        String year = getGraduatingYear();
+        return ("Login email: " + firstname + "." + lastname + year.substring(year.length()-2) + "@ycdsbk12.ca");
+    }
+    
     public static void main (String[]args){
         List firstNames = new ArrayList();
         List lastNames = new ArrayList();
