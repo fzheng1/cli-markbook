@@ -115,7 +115,6 @@ public class main {
                 name += full;
 
             }
-            System.out.println("you entered: " + name.trim());
 
             // check if entered name is the same as retrieved name, then return the index of that name if found
             if (name.trim().equals(student)) {
