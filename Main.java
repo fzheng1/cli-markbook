@@ -128,34 +128,15 @@ public class main {
         return -1;
     }
 
+    // Add marks from input for an idividual student to its corresponding location in markList
     private static List addMarklist(List classList) {
-        /*
-        List students = new ArrayList();
-        List bigstudents = new ArrayList();
-        List biggerstudents = new ArrayList();
-
-        for (int i = 0; i < 10; i++) {
-            students.add("a");
-        }
-        for (int i = 0; i < 5; i++) {
-            bigstudents.add(students);
-        }
-
-
-        System.out.println(bigstudents);
-
-
-
-        for (int i = 0; i < 10; i++) {
-            biggerstudents.add("a");
-        }
-        */
+      
         List markList = new ArrayList();
         System.out.println(classList);
 
         int index = indexOfStudent(classList);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < classList.size(); i++) {
             markList.add("");
         }
         System.out.println(markList);
