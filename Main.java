@@ -128,15 +128,34 @@ public class main {
         return -1;
     }
 
-    // Add marks from input for an idividual student to its corresponding location in markList
     private static List addMarklist(List classList) {
-      
+        /*
+        List students = new ArrayList();
+        List bigstudents = new ArrayList();
+        List biggerstudents = new ArrayList();
+
+        for (int i = 0; i < 10; i++) {
+            students.add("a");
+        }
+        for (int i = 0; i < 5; i++) {
+            bigstudents.add(students);
+        }
+
+
+        System.out.println(bigstudents);
+
+
+
+        for (int i = 0; i < 10; i++) {
+            biggerstudents.add("a");
+        }
+        */
         List markList = new ArrayList();
         System.out.println(classList);
 
         int index = indexOfStudent(classList);
 
-        for (int i = 0; i < classList.size(); i++) {
+        for (int i = 0; i < 10; i++) {
             markList.add("");
         }
         System.out.println(markList);
@@ -150,6 +169,20 @@ public class main {
         return markList;
     }
 
+    private static double studentAverage(List studentMarks) {
+
+        int addedEntries = 0;
+
+        for (int i = 0; i < studentMarks.size(); i ++){
+
+            int grade = (Integer) studentMarks.get(i);
+            addedEntries += grade;
+        }
+
+        double studentAverage = (addedEntries/studentMarks.size());
+        System.out.print(studentAverage);
+        return studentAverage;
+    }
 
     public static void main (String[]args){
         List firstNames = new ArrayList();
