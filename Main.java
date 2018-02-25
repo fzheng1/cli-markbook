@@ -252,6 +252,13 @@ public class main {
                     markList.add(empty);
                 }
 
+                else if (options.equals("2")) {
+                    int index = indexOfStudent(classList);
+
+                    classList.remove(index);
+                    markList.remove(index);
+                }
+
                 else if (options.equals("3")) {
                     classList.set(indexOfStudent(classList), addStudentInfo());
                 }
@@ -266,6 +273,13 @@ public class main {
 
                     markList.set(indexOfStudent(classList), getMarks());
                     System.out.println(markList);
+                }
+
+                else if (options.equals("2")) {
+                    int index = indexOfStudent(classList);
+                    List empty = new ArrayList();
+
+                    markList.set(index, empty);
                 }
 
                 else if (options.equals("3")) {
