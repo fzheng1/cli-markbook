@@ -181,6 +181,35 @@ public class main {
 
     }
 
+    private static String lessThan65(List classList, List markList) {
+        String dangerzone = "";
+
+        for (int i=0; i<classList.size(); i++) {
+            List studentMarks = (List) markList.get(i);
+
+            if (studentAverage(studentMarks) <= 65) {
+
+                // loop within the 2d list to first make the full name then check if it matches up with input
+                for (int j = 0; j < classList.size(); j++) {
+
+                }
+                    // first and last names are stored within the first 2 indexes of inner list
+                    for (int k = 0; k < 2; k++) {
+
+                        // check each inner list within classList
+                        List first = (List) classList.get(i);
+
+                        // retrieves the first name first then last name from inner list and adds them together
+                        String full = " " + first.get(k).toString();
+                        dangerzone += full;
+                    }
+            }
+
+        }
+        System.out.println(dangerzone.trim());
+        return dangerzone.trim();
+    }
+    
     public static void main (String[]args){
         List firstNames = new ArrayList();
         List lastNames = new ArrayList();
