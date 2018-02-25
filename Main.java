@@ -62,7 +62,27 @@ public class main {
         System.out.println("You have added: " + nameF + " " + nameL+ " " + studentNo+ " " + gradYear);
         return info;
     }
+    private static List getMarks(){
+  
+      //ask user how many marks are being entered
+      Scanner input = new Scanner(System.in);
+      System.out.print("How many assignemt marks are being entered?: ");
+      int numMarks = input.nextInt();
+
+      List studentMarks = new ArrayList();
+
+      //allows user to continue entering marks for number specified above
+      for (int i=0; i < numMarks; i++){
+
+        System.out.print("What is the mark for assignment " + (i+1) + "?: ");
+        int grade = input.nextInt();
+        studentMarks.add(grade);
+
+        System.out.println(studentMarks);
+
     
+   }
+  
     
     // returns index number of student given his full name from the class list, if name is not found, returns -1
     // call command is int x = indexOfStudent(classList);
