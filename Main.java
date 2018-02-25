@@ -267,6 +267,10 @@ public class main {
                     markList.set(indexOfStudent(classList), getMarks());
                     System.out.println(markList);
                 }
+
+                else if (options.equals("3")) {
+                    markList.set(indexOfStudent(classList), getMarks());
+                }
             }
 
             else if (manage.equals("3")) {
