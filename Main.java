@@ -79,6 +79,7 @@ public class main {
         studentMarks.add(grade);
 
         System.out.println(studentMarks);
+        return studentMarks;
 
     
    }
