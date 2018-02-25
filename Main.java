@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class main {
 
+    //user inputs first name of student
     private static String getFirstName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter first name: ");
@@ -11,7 +12,8 @@ public class main {
 
         return firstName;
     }
-
+    
+    //user inputs last name of student
     private static String getLastName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter last name: ");
@@ -20,6 +22,7 @@ public class main {
         return lastName;
     }
 
+    //user inputs student number
     private static String getStudentNumber() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter student ID: ");
@@ -27,7 +30,8 @@ public class main {
 
         return Integer.toString(studentNumber);
     }
-
+    
+    //user inputs graduating year
     private static String getGraduatingYear() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter graduating year: ");
@@ -64,6 +68,7 @@ public class main {
         return info;
     }
 
+    //user inputs a student's grades
     private static List getMarks() {
 
         //ask user how many marks are being entered
@@ -129,27 +134,7 @@ public class main {
     }
 
     private static List addMarklist(List classList) {
-        /*
-        List students = new ArrayList();
-        List bigstudents = new ArrayList();
-        List biggerstudents = new ArrayList();
-
-        for (int i = 0; i < 10; i++) {
-            students.add("a");
-        }
-        for (int i = 0; i < 5; i++) {
-            bigstudents.add(students);
-        }
-
-
-        System.out.println(bigstudents);
-
-
-
-        for (int i = 0; i < 10; i++) {
-            biggerstudents.add("a");
-        }
-        */
+        
         List markList = new ArrayList();
         System.out.println(classList);
 
@@ -169,6 +154,7 @@ public class main {
         return markList;
     }
 
+    //calculates a student's average
     private static double studentAverage(List studentMarks) {
 
         int addedEntries = 0;
