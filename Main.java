@@ -247,7 +247,13 @@ public class main {
                     List empty = new ArrayList();
                     // this stores the list returned by entering all the data into the full class list
                     classList.add(addStudentInfo());
+
+
                     markList.add(empty);
+                }
+
+                else if (options.equals("3")) {
+                    classList.set(indexOfStudent(), addStudentInfo());
                 }
             }
 
