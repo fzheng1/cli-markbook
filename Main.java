@@ -92,36 +92,43 @@ public class main {
     // call command is int x = indexOfStudent(classList);
     private static int indexOfStudent (List classList){
         Scanner input = new Scanner(System.in);
-        System.out.println(classList);
 
-        // get name of student to be found
-        System.out.println("Enter Full Name of Student");
-        String student = input.nextLine();
 
-        // loop within the 2d list to first make the full name then check if it matches up with input
-        for (int i = 0; i < classList.size(); i++) {
+        boolean done = false;
 
-            // string to collect full name
-            String name = "";
+        while (!done) {
 
-            // first and last names are stored within the first 2 indexes of inner list
-            for (int j = 0; j < 2; j++) {
+            System.out.println(classList);
 
-                // check each inner list within classList
-                List first = (List) classList.get(i);
+            // get name of student to be found
+            System.out.println("Enter Full Name of Student");
+            String student = input.nextLine();
+            
+            // loop within the 2d list to first make the full name then check if it matches up with input
+            for (int i = 0; i < classList.size(); i++) {
 
-                // retrieves the first name first then last name from inner list and adds them together
-                String full = " " + first.get(j).toString();
-                name += full;
+                // string to collect full name
+                String name = "";
+
+                // first and last names are stored within the first 2 indexes of inner list
+                for (int j = 0; j < 2; j++) {
+
+                    // check each inner list within classList
+                    List first = (List) classList.get(i);
+
+                    // retrieves the first name first then last name from inner list and adds them together
+                    String full = " " + first.get(j).toString();
+                    name += full;
+
+                }
+
+                // check if entered name is the same as retrieved name, then return the index of that name if found
+                if (name.trim().equals(student)) {
+
+                    return i;
+                }
 
             }
-
-            // check if entered name is the same as retrieved name, then return the index of that name if found
-            if (name.trim().equals(student)) {
-
-                return i;
-            }
-
         }
         // if name not found in class list return -1
         return -1;
