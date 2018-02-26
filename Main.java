@@ -64,7 +64,7 @@ public class main {
     // user inputs a student's grades
     private static List getMarks() {
 
-        //ask user how many marks are being entered
+        //asks user how many marks are being entered
         List empty = new ArrayList();
         Scanner input = new Scanner(System.in);
         System.out.print("How many assignemt marks are being entered?: ");
@@ -72,7 +72,7 @@ public class main {
 
         List studentMarks = new ArrayList();
 
-        //allows user to continue entering marks for number specified above
+        //allows the user to continue entering marks for the number specified above
         for (int i = 0; i < numMarks; i++) {
 
             System.out.print("What is the mark for assignment " + (i + 1) + "?: ");
@@ -153,7 +153,7 @@ public class main {
         return markList;
     }
 
-    // calculates a dtudent's average
+    // calculates a student's average
     private static double studentAverage(List studentMarks) {
 
         double addedEntries = 0;
@@ -179,7 +179,7 @@ public class main {
 
     }
 
-    // prints list of students with avg less than 65
+    // prints a list of students with avg less than 65
     private static String LessThan65(List classList, List markList) {
         String dangerzone = "";
 
@@ -222,7 +222,7 @@ public class main {
         return (upperFirstInitial + lowerLastInitial + studentNumber);
     }
 
-    //calculates class average
+    //calculates the average of the class
     private static double classAverage(List markList){
 
         double classTotal = 0;
@@ -244,7 +244,7 @@ public class main {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Number of assignments students should have: ");
-        String assignments =  input.nextLine();
+        String assignments =  input.nextLine();t
         int assignmentI = Integer.parseInt(assignments);
 
         String badStudents = "";
