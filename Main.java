@@ -179,7 +179,7 @@ public class main {
 
     }
 
-    // prints list of students with avg less than 65 ***NOT TESTED***
+    // prints list of students with avg less than 65
     private static String LessThan65(List classList, List markList) {
         String dangerzone = "";
 
@@ -205,7 +205,6 @@ public class main {
             }
 
         }
-        System.out.println(dangerzone.trim());
         return dangerzone.trim();
     }
 
@@ -385,7 +384,6 @@ public class main {
                 }
             }
         }
-
     }
 
 }
