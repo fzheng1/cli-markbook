@@ -224,7 +224,23 @@ public class main {
         String lowerLastInitial = String.valueOf(Character.toLowerCase(lastname.charAt(0)));
         return (upperFirstInitial + lowerLastInitial + studentNumber);
     }
+    
+    //calculates class average
+    private static double classAverage(List markList){
+    
+        double classTotal = 0;
 
+        //uses studentAverage function to caclulate class average and return it
+        for (int i = 0; i < markList.size(); i ++){
+
+          List studentmarks = (List)markList.get(i);
+
+          classTotal += studentAverage(studentmarks);
+
+        }
+        double classAverage = (classTotal/markList.size());
+        return classAverage;
+    }
     // main
     public static void main (String[] args){
 
