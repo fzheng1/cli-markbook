@@ -269,6 +269,32 @@ public class main {
         return badStudents.trim();
     }
 
+    private static List studentReport(List classList, List markLists) {
+        List report = new ArrayList();
+
+        for (int i = 0; i < classList.size(); i++) {
+
+            List studentreport = new ArrayList();
+
+            List studentMarks =(List) markLists.get(i);
+            List studentList = (List) classList.get(i);
+
+
+            double studentavg = studentAverage((studentMarks));
+            double classavg = classAverage(markLists);
+            String fname = (String) studentList.get(0);
+            String lname = (String) studentList.get(1);
+            studentreport.add(fname);
+            studentreport.add(lname);
+            studentreport.add(studentavg);
+            studentreport.add(classavg);
+            report.add(studentreport);
+
+        }
+
+    return report;
+    }
+    
     // main
     public static void main (String[] args){
 
@@ -342,7 +368,7 @@ public class main {
             else if (manage.equals("3")) {
                 System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
                 System.out.println("4) Display Student Average \n5) Display Class Average \n6) Students with average below 65");
-                System.out.println("7) Students With Missing Assignments");
+                System.out.println("7) Students With Missing Assignments \n8) Student report of average compared to class average");
                 System.out.println("Enter 1, 2, 3, 4, 5, 6, 7: ");
                 String options = input.nextLine();
 
@@ -390,6 +416,13 @@ public class main {
                 else if (options.equals("7")) {
                     String missing = missingAssignments(classList, markList);
                     System.out.println(missing);
+                }
+                
+                //report
+                else if (options.equals("8")) {
+                    List report = studentReport(classList, markList);
+                    System.out.println(report);
+
                 }
             }
         }
