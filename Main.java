@@ -239,7 +239,7 @@ public class main {
 
         }
           double classAverage = (classTotal/markList.size());
-          return classAverage
+          return classAverage;
     }
     // main
     public static void main (String[] args){
