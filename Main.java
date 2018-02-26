@@ -229,7 +229,7 @@ public class main {
         double classTotal = 0;
 
         //uses studentAverage function to caclulate class average and return it
-        for (int i = 0; i < markList.size(); i ++){
+        for (int i = 0; i < markList.size(); i++){
 
             List studentmarks = (List)markList.get(i);
 
@@ -238,6 +238,34 @@ public class main {
         }
         double classAverage = (classTotal/markList.size());
         return classAverage;
+    }
+
+    private static String missingAssignments(List classList, List markList) {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Number of assignments students should have: ");
+        String assignments =  input.nextLine();
+        int assignmentI = Integer.parseInt(assignments);
+
+        String badStudents = "";
+
+
+        for (int i = 0; i < classList.size(); i++) {
+            List studentmarks = (List) markList.get(i);
+
+            if (studentmarks.size() < assignmentI) {
+                List studentname = (List) classList.get(i);
+                String first = (String) studentname.get(0);
+                String last = (String) studentname.get(1);
+
+                String fullname = first + " " + last;
+                badStudents += fullname + " ";
+
+            }
+
+        }
+        return badStudents.trim();
     }
 
     // main
@@ -311,7 +339,8 @@ public class main {
             else if (manage.equals("3")) {
                 System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
                 System.out.println("4) Display Student Average \n5) Display Class Average \n6) Students with average below 65");
-                System.out.println("Enter 1, 2, 3, 4, 5, 6: ");
+                System.out.println("7) Students With Missing Assignments");
+                System.out.println("Enter 1, 2, 3, 4, 5, 6, 7: ");
                 String options = input.nextLine();
 
                 if (options.equals("1")) {
@@ -348,6 +377,11 @@ public class main {
                 else if (options.equals("6")) {
                     String dangerzone = LessThan65(classList, markList);
                     System.out.println(dangerzone);
+                }
+
+                else if (options.equals("7")) {
+                    String missing = missingAssignments(classList, markList);
+                    System.out.println(missing);
                 }
             }
         }
