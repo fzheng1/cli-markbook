@@ -246,7 +246,7 @@ public class main {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Number of assignments students should have: ");
-        String assignments =  input.nextLine();t
+        String assignments =  input.nextLine();
         int assignmentI = Integer.parseInt(assignments);
 
         String badStudents = "";
@@ -332,6 +332,7 @@ public class main {
 
                     markList.set(index, empty);
                 }
+
                 //edit student marks
                 else if (options.equals("3")) {
                     markList.set(indexOfStudent(classList), getMarks());
