@@ -40,7 +40,6 @@ public class main {
         return Integer.toString(graduatingYear);
     }
 
-
     // gets all info for a certain student from the user and returns a list of the student's info
     private static List addStudentInfo() {
         System.out.println("\nAdd student information");
@@ -93,7 +92,6 @@ public class main {
     private static int indexOfStudent (List classList){
         Scanner input = new Scanner(System.in);
 
-
         boolean done = false;
 
         while (!done) {
@@ -103,7 +101,7 @@ public class main {
             // get name of student to be found
             System.out.println("Enter Full Name of Student");
             String student = input.nextLine();
-            
+
             // loop within the 2d list to first make the full name then check if it matches up with input
             for (int i = 0; i < classList.size(); i++) {
 
@@ -224,23 +222,24 @@ public class main {
         String lowerLastInitial = String.valueOf(Character.toLowerCase(lastname.charAt(0)));
         return (upperFirstInitial + lowerLastInitial + studentNumber);
     }
-    
+
     //calculates class average
     private static double classAverage(List markList){
-    
+
         double classTotal = 0;
 
         //uses studentAverage function to caclulate class average and return it
         for (int i = 0; i < markList.size(); i ++){
 
-          List studentmarks = (List)markList.get(i);
+            List studentmarks = (List)markList.get(i);
 
-          classTotal += studentAverage(studentmarks);
+            classTotal += studentAverage(studentmarks);
 
         }
         double classAverage = (classTotal/markList.size());
         return classAverage;
     }
+
     // main
     public static void main (String[] args){
 
@@ -311,8 +310,8 @@ public class main {
 
             else if (manage.equals("3")) {
                 System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
-                System.out.println("4) Display Student Average");
-                System.out.println("Enter 1, 2, 3, 4: ");
+                System.out.println("4) Display Student Average \n5) Display Class Average");
+                System.out.println("Enter 1, 2, 3, 4, 5: ");
                 String options = input.nextLine();
 
                 if (options.equals("1")) {
@@ -339,6 +338,11 @@ public class main {
                 else if (options.equals("4")) {
                     double avg = studentAverage(correspondingMark(classList, markList));
                     System.out.println("This student's average is: " + avg);
+                }
+
+                else if (options.equals("5")) {
+                    double classavg = classAverage(markList);
+                    System.out.println("The class average is: " + classavg);
                 }
             }
         }
