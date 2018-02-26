@@ -1,3 +1,4 @@
+//import required libraries
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class main {
 
         List info = new ArrayList();
 
+        //add student info to info list
         String nameF = getFirstName();
         String nameL = getLastName();
         String studentNo = getStudentNumber();
@@ -56,7 +58,7 @@ public class main {
         info.add(2, studentNo);
         info.add(3, gradYear);
 
-
+        //display student information that has been added
         System.out.println("You have added: " + nameF + " " + nameL + " " + studentNo + " " + gradYear);
         return info;
     }
@@ -238,7 +240,7 @@ public class main {
         double classAverage = (classTotal/markList.size());
         return classAverage;
     }
-
+    //determines students with assignments that are missing
     private static String missingAssignments(List classList, List markList) {
 
         Scanner input = new Scanner(System.in);
@@ -249,7 +251,7 @@ public class main {
 
         String badStudents = "";
 
-
+        //scans for students with inadequte assignment entries and adds them to a list
         for (int i = 0; i < classList.size(); i++) {
             List studentmarks = (List) markList.get(i);
 
@@ -299,42 +301,43 @@ public class main {
 
                     markList.add(empty);
                 }
-
+                //remove student info option
                 else if (options.equals("2")) {
                     int index = indexOfStudent(classList);
 
                     classList.remove(index);
                     markList.remove(index);
                 }
-
+                //edit student info
                 else if (options.equals("3")) {
                     classList.set(indexOfStudent(classList), addStudentInfo());
                 }
             }
-
+            //more user options
             else if (manage.equals("2")) {
                 System.out.println("1) Add Marks \n2) Remove Marks \n3) Edit");
                 System.out.print("Enter 1, 2, or 3: ");
                 String options = input.nextLine();
 
+                //add student marks
                 if (options.equals("1")) {
 
                     markList.set(indexOfStudent(classList), getMarks());
                     System.out.println(markList);
                 }
-
+                //remove student marks
                 else if (options.equals("2")) {
                     int index = indexOfStudent(classList);
                     List empty = new ArrayList();
 
                     markList.set(index, empty);
                 }
-
+                //edit student marks
                 else if (options.equals("3")) {
                     markList.set(indexOfStudent(classList), getMarks());
                 }
-            }
-
+            
+            //display options
             else if (manage.equals("3")) {
                 System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
                 System.out.println("4) Display Student Average \n5) Display Class Average \n6) Students with average below 65");
@@ -342,15 +345,16 @@ public class main {
                 System.out.println("Enter 1, 2, 3, 4, 5, 6, 7: ");
                 String options = input.nextLine();
 
+                //display class list
                 if (options.equals("1")) {
                     System.out.println(classList);
                 }
-
+                //display marks of a student
                 else if (options.equals("2")) {
                     List studentMarks = correspondingMark(classList, markList);
                     System.out.println(studentMarks);
-                }
-
+                }play
+                //display login info
                 else if (options.equals("3")) {
                     String firstname = getFirstName();
                     String lastname = getLastName();
@@ -362,22 +366,26 @@ public class main {
                     System.out.println(username);
                     System.out.println("Password: " + password);
                 }
-
+               
+                //display student average
                 else if (options.equals("4")) {
                     double avg = studentAverage(correspondingMark(classList, markList));
                     System.out.println("This student's average is: " + avg);
                 }
-
+                
+                //display class average
                 else if (options.equals("5")) {
                     double classavg = classAverage(markList);
                     System.out.println("The class average is: " + classavg);
                 }
-
+                
+                //display student with average lower than 65
                 else if (options.equals("6")) {
                     String dangerzone = LessThan65(classList, markList);
                     System.out.println(dangerzone);
                 }
 
+                //display students with missing assignments
                 else if (options.equals("7")) {
                     String missing = missingAssignments(classList, markList);
                     System.out.println(missing);
