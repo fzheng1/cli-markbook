@@ -310,8 +310,8 @@ public class main {
 
             else if (manage.equals("3")) {
                 System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
-                System.out.println("4) Display Student Average \n5) Display Class Average");
-                System.out.println("Enter 1, 2, 3, 4, 5: ");
+                System.out.println("4) Display Student Average \n5) Display Class Average \n6) Students with average below 65");
+                System.out.println("Enter 1, 2, 3, 4, 5, 6: ");
                 String options = input.nextLine();
 
                 if (options.equals("1")) {
@@ -343,6 +343,11 @@ public class main {
                 else if (options.equals("5")) {
                     double classavg = classAverage(markList);
                     System.out.println("The class average is: " + classavg);
+                }
+
+                else if (options.equals("6")) {
+                    String dangerzone = LessThan65(classList, markList);
+                    System.out.println(dangerzone);
                 }
             }
         }
