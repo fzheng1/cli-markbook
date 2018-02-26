@@ -238,8 +238,8 @@ public class main {
           classTotal += studentAverage(studentmarks);
 
         }
-          double classAverage = (classTotal/markList.size());
-          return classAverage;
+        double classAverage = (classTotal/markList.size());
+        return classAverage;
     }
     // main
     public static void main (String[] args){
