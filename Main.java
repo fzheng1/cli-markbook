@@ -268,7 +268,7 @@ public class main {
         }
         return badStudents.trim();
     }
-
+    // returns a list of the students names with the student's average and the class average
     private static List studentReport(List classList, List markLists) {
         List report = new ArrayList();
 
