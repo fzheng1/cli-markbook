@@ -65,7 +65,7 @@ public class main {
     // user inputs a student's grades
     private static List getMarks() {
 
-        //asks user how many marks are being entered
+        //ask user how many marks are being entered
         List empty = new ArrayList();
         Scanner input = new Scanner(System.in);
         System.out.print("How many assignemt marks are being entered?: ");
@@ -73,7 +73,7 @@ public class main {
 
         List studentMarks = new ArrayList();
 
-        //allows the user to continue entering marks for the number specified above
+        //allows user to continue entering marks for number specified above
         for (int i = 0; i < numMarks; i++) {
 
             System.out.print("What is the mark for assignment " + (i + 1) + "?: ");
@@ -151,7 +151,7 @@ public class main {
             addedEntries += grade;
         }
 
-        return (double) (addedEntries/studentMarks.size());
+        return (addedEntries/studentMarks.size());
     }
 
     // finds the list of the student's grades
@@ -166,7 +166,7 @@ public class main {
 
     }
 
-    // prints a list of students with avg less than 65
+    // prints list of students with avg less than 65
     private static String LessThan65(List classList, List markList) {
         String dangerzone = "";
 
@@ -209,7 +209,7 @@ public class main {
         return (upperFirstInitial + lowerLastInitial + studentNumber);
     }
 
-    //calculates the average of the class
+    //calculates class average
     private static double classAverage(List markList){
 
         double classTotal = 0;
@@ -225,7 +225,7 @@ public class main {
         double classAverage = (classTotal/markList.size());
         return classAverage;
     }
-    //determines students with assignments that are missing
+
     private static String missingAssignments(List classList, List markList) {
 
         Scanner input = new Scanner(System.in);
@@ -236,7 +236,7 @@ public class main {
 
         String badStudents = "";
 
-        //scans for students with inadequte assignment entries and adds them to a list
+
         for (int i = 0; i < classList.size(); i++) {
             List studentmarks = (List) markList.get(i);
 
@@ -253,7 +253,7 @@ public class main {
         }
         return badStudents.trim();
     }
-    // returns a list of the students names with the student's average and the class average
+
     private static List studentReport(List classList, List markLists) {
         List report = new ArrayList();
 
@@ -265,21 +265,52 @@ public class main {
             List studentList = (List) classList.get(i);
 
 
-            double studentavg = studentAverage((studentMarks));
+            double studentavg = studentAverage(studentMarks);
+            double roundedavg = Math.round(studentavg*100.0)/100.0;
+            String stringAvg = Double.toString(roundedavg);
+
             double classavg = classAverage(markLists);
+            double classrounded = Math.round(classavg*100.0)/100.0;
+            String stringclassavg = Double.toString(classrounded);
+
             String fname = (String) studentList.get(0);
             String lname = (String) studentList.get(1);
+            String studentNumber = (String) studentList.get(2);
+
             studentreport.add(fname);
             studentreport.add(lname);
-            studentreport.add(studentavg);
-            studentreport.add(classavg);
+            studentreport.add(studentNumber);
+            studentreport.add(stringAvg);
+            studentreport.add(stringclassavg);
+
             report.add(studentreport);
 
         }
 
     return report;
     }
-    
+
+    private static void reportFormatted(List report) {
+
+        for (int i = 0; i < report.size(); i++) {
+
+            List reportIndividual = (List) report.get(i);
+
+            String formatted = "";
+
+            for (int j = 0; j < reportIndividual.size(); j++) {
+
+                String info = (String) reportIndividual.get(j);
+                formatted += info + " ";
+
+            }
+
+            System.out.println(formatted);
+
+        }
+
+    }
+
     // main
     public static void main (String[] args){
 
@@ -300,7 +331,7 @@ public class main {
             if (manage.equals("1")) {
 
                 // user chooses how they want to manipulate the class list
-                System.out.println("1) Add Student Info \n2) Remove Student \n3) Edit ");
+                System.out.println("1) Add Student \n2) Remove Student \n3) Edit Student ");
                 System.out.print("Enter 1, 2 or 3: ");
                 String options = input.nextLine();
 
@@ -312,31 +343,30 @@ public class main {
 
                     markList.add(empty);
                 }
-                //remove student info option
+
                 else if (options.equals("2")) {
                     int index = indexOfStudent(classList);
 
                     classList.remove(index);
                     markList.remove(index);
                 }
-                //edit student info
+
                 else if (options.equals("3")) {
                     classList.set(indexOfStudent(classList), addStudentInfo());
                 }
             }
-            //more user options
+
             else if (manage.equals("2")) {
                 System.out.println("1) Add Marks \n2) Remove Marks \n3) Edit");
                 System.out.print("Enter 1, 2, or 3: ");
                 String options = input.nextLine();
 
-                //add student marks
                 if (options.equals("1")) {
 
                     markList.set(indexOfStudent(classList), getMarks());
                     System.out.println(markList);
                 }
-                //remove student marks
+
                 else if (options.equals("2")) {
                     int index = indexOfStudent(classList);
                     List empty = new ArrayList();
@@ -344,30 +374,33 @@ public class main {
                     markList.set(index, empty);
                 }
 
-                //edit student marks
                 else if (options.equals("3")) {
                     markList.set(indexOfStudent(classList), getMarks());
                 }
-            
-            //display options
+            }
+
             else if (manage.equals("3")) {
-                System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
-                System.out.println("4) Display Student Average \n5) Display Class Average \n6) Students with average below 65");
-                System.out.println("7) Students With Missing Assignments \n8) Student report of average compared to class average");
-                System.out.println("Enter 1, 2, 3, 4, 5, 6, 7, 8: ");
+                System.out.println("1) Display Class report  \n2) Display Login Info of student");
+                //System.out.println("4) Display Student Average \n5) Display Class Average ");
+                System.out.println("3) Students with average below 65");
+                System.out.println("4) Students With Missing Assignments ");
+                System.out.println("Enter 1, 2, 3, 4: ");
+
                 String options = input.nextLine();
 
-                //display class list
                 if (options.equals("1")) {
-                    System.out.println(classList);
+
+                    reportFormatted(studentReport(classList, markList));
+
                 }
-                //display marks of a student
+
+//                else if (options.equals("2")) {
+//                    List studentMarks = correspondingMark(classList, markList);
+//                    System.out.println(studentMarks);
+//                }
+
                 else if (options.equals("2")) {
-                    List studentMarks = correspondingMark(classList, markList);
-                    System.out.println(studentMarks);
-                }play
-                //display login info
-                else if (options.equals("3")) {
+
                     String firstname = getFirstName();
                     String lastname = getLastName();
                     String studentnumber = getStudentNumber();
@@ -378,37 +411,29 @@ public class main {
                     System.out.println(username);
                     System.out.println("Password: " + password);
                 }
-               
-                //display student average
+
+                /*
                 else if (options.equals("4")) {
                     double avg = studentAverage(correspondingMark(classList, markList));
                     System.out.println("This student's average is: " + avg);
                 }
-                
-                //display class average
+
                 else if (options.equals("5")) {
                     double classavg = classAverage(markList);
                     System.out.println("The class average is: " + classavg);
                 }
-                
-                //display student with average lower than 65
-                else if (options.equals("6")) {
+                */
+
+                else if (options.equals("3")) {
                     String dangerzone = LessThan65(classList, markList);
                     System.out.println(dangerzone);
                 }
 
-                //display students with missing assignments
-                else if (options.equals("7")) {
+                else if (options.equals("4")) {
                     String missing = missingAssignments(classList, markList);
                     System.out.println(missing);
                 }
-                
-                //report
-                else if (options.equals("8")) {
-                    List report = studentReport(classList, markList);
-                    System.out.println(report);
 
-                }
             }
         }
     }
