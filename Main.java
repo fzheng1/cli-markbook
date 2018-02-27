@@ -47,19 +47,18 @@ public class main {
 
         List info = new ArrayList();
 
-        //add student info to info list
         String nameF = getFirstName();
         String nameL = getLastName();
         String studentNo = getStudentNumber();
-        String gradYear = getGraduatingYear();
+        //String gradYear = getGraduatingYear();
 
         info.add(0, nameF);
         info.add(1, nameL);
         info.add(2, studentNo);
-        info.add(3, gradYear);
+        //info.add(3, gradYear);
 
-        //display student information that has been added
-        System.out.println("You have added: " + nameF + " " + nameL + " " + studentNo + " " + gradYear);
+
+        System.out.println("You have added: " + nameF + " " + nameL + " " + studentNo);
         return info;
     }
 
@@ -101,33 +100,19 @@ public class main {
             System.out.println(classList);
 
             // get name of student to be found
-            System.out.println("Enter Full Name of Student");
+            System.out.println("Enter Student ID");
             String student = input.nextLine();
 
             // loop within the 2d list to first make the full name then check if it matches up with input
             for (int i = 0; i < classList.size(); i++) {
 
-                // string to collect full name
-                String name = "";
-
-                // first and last names are stored within the first 2 indexes of inner list
-                for (int j = 0; j < 2; j++) {
-
-                    // check each inner list within classList
-                    List first = (List) classList.get(i);
-
-                    // retrieves the first name first then last name from inner list and adds them together
-                    String full = " " + first.get(j).toString();
-                    name += full;
-
-                }
+                List studentinfo = (List) classList.get(i);
+                String studentNumber = (String) studentinfo.get(2);
 
                 // check if entered name is the same as retrieved name, then return the index of that name if found
-                if (name.trim().equals(student)) {
-
+                if (studentNumber.equals(student)) {
                     return i;
                 }
-
             }
         }
         // if name not found in class list return -1
@@ -369,7 +354,7 @@ public class main {
                 System.out.println("1) Display Class List \n2) Display marks of a student \n3) Display Login Info of student");
                 System.out.println("4) Display Student Average \n5) Display Class Average \n6) Students with average below 65");
                 System.out.println("7) Students With Missing Assignments \n8) Student report of average compared to class average");
-                System.out.println("Enter 1, 2, 3, 4, 5, 6, 7: ");
+                System.out.println("Enter 1, 2, 3, 4, 5, 6, 7, 8: ");
                 String options = input.nextLine();
 
                 //display class list
