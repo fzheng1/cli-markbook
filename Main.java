@@ -1,4 +1,4 @@
-//import required libraries
+// import required libraries
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class main {
         //info.add(3, gradYear);
 
 
-        System.out.println("You have added: " + nameF + " " + nameL + " " + studentNo);
+        System.out.println("You have added: " + nameF + " | " + nameL + " | " + studentNo);
         return info;
     }
 
@@ -292,16 +292,17 @@ public class main {
 
     private static void reportFormatted(List report) {
 
+        System.out.println("\n|First Name|Last Name|Student Number|Student Average|Class Average|\n");
         for (int i = 0; i < report.size(); i++) {
 
             List reportIndividual = (List) report.get(i);
 
-            String formatted = "";
+            String formatted = "| ";
 
             for (int j = 0; j < reportIndividual.size(); j++) {
 
                 String info = (String) reportIndividual.get(j);
-                formatted += info + " ";
+                formatted += info + " | ";
 
             }
 
@@ -324,15 +325,15 @@ public class main {
 
         while (!done) {
             // User chooses what they want to do
-            System.out.println("1) Manage Class List \n2) Manage Marks \n3) Display");
+            System.out.println("\n1) Manage Class List \n2) Manage Marks \n3) Display");
             System.out.print("Enter 1, 2, 3: ");
             String manage = input.nextLine();
 
             if (manage.equals("1")) {
 
                 // user chooses how they want to manipulate the class list
-                System.out.println("1) Add Student \n2) Remove Student \n3) Edit Student ");
-                System.out.print("Enter 1, 2 or 3: ");
+                System.out.println("\n1) Add Student \n2) Remove Student \n3) Edit Student ");
+                System.out.print("\nEnter 1, 2 or 3: ");
                 String options = input.nextLine();
 
                 if (options.equals("1")) {
@@ -357,8 +358,8 @@ public class main {
             }
 
             else if (manage.equals("2")) {
-                System.out.println("1) Add Marks \n2) Remove Marks \n3) Edit");
-                System.out.print("Enter 1, 2, or 3: ");
+                System.out.println("\n1) Add Marks \n2) Remove Marks \n3) Edit");
+                System.out.print("\nEnter 1, 2, or 3: ");
                 String options = input.nextLine();
 
                 if (options.equals("1")) {
@@ -380,11 +381,11 @@ public class main {
             }
 
             else if (manage.equals("3")) {
-                System.out.println("1) Display Class report  \n2) Display Login Info of student");
+                System.out.println("\n1) Display Class report  \n2) Display Login Info of student");
                 //System.out.println("4) Display Student Average \n5) Display Class Average ");
                 System.out.println("3) Students with average below 65");
                 System.out.println("4) Students With Missing Assignments ");
-                System.out.println("Enter 1, 2, 3, 4: ");
+                System.out.println("\nEnter 1, 2, 3, 4: ");
 
                 String options = input.nextLine();
 
