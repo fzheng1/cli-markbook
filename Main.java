@@ -1,9 +1,199 @@
-// import required libraries
+// required libraries
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class main {
+
+    // main
+    public static void main (String[] args){
+
+        // 2d list in which each indexed list has the student's name, number and grad date
+        List classList = new ArrayList();
+        List markList = new ArrayList();
+
+        //  program infinite looped
+        initializeProgram(classList, markList);
+    }
+
+    // run the program without stopping
+    private static void initializeProgram(List classList, List markList) {
+        Scanner input = new Scanner(System.in);
+
+        boolean done = false;
+
+        // infinite loop
+        while (!done) {
+
+            //user initial options
+            initialOptionPaths(classList, markList, input);
+        }
+    }
+
+    // Initial path options for program
+    private static void initialOptionPaths(List classList, List markList, Scanner input) {
+        String manage = getInitialOptions(input);
+
+        if (manage.equals("1")) {
+
+            // classListManipulation
+            manageStudents(classList, markList, input);
+        }
+
+        else if (manage.equals("2")) {
+
+            // markManipulation
+            markOptions(classList, markList, input);
+        }
+
+        else if (manage.equals("3")) {
+
+            // displayOptions
+            displayOptions(classList, markList, input);
+
+        }
+    }
+
+    // get initial path options to choose what to do
+    private static String getInitialOptions(Scanner input) {
+
+        // User String input
+        System.out.println("\n1) Manage Class List \n2) Manage Marks \n3) Display");
+        System.out.print("Enter 1, 2, 3: ");
+        return input.nextLine();
+    }
+
+    // Display paths
+    private static void displayOptions(List classList, List markList, Scanner input) {
+
+        // Initial options for user
+        printDisplayOptionsForUser();
+
+        String options = input.nextLine();
+
+        if (options.equals("1")) {
+
+            reportFormatted(studentReport(classList, markList));
+
+        }
+
+        else if (options.equals("2")) {
+
+            // print login info
+            printLoginInfo();
+        }
+
+        else if (options.equals("3")) {
+
+            // print students with avg < 65
+            String dangerzone = LessThan65(classList, markList);
+            System.out.println(dangerzone);
+        }
+
+        else if (options.equals("4")) {
+
+            // print students with missing assignments
+            String missing = missingAssignments(classList, markList);
+            System.out.println(missing);
+        }
+    }
+
+    // display login info from User input
+    private static void printLoginInfo() {
+
+        String firstname = getFirstName();
+        String lastname = getLastName();
+        String studentnumber = getStudentNumber();
+        String gradYear = getGraduatingYear();
+
+        String username = username(firstname, lastname, gradYear);
+        String password = passwordInformation(firstname, lastname, studentnumber);
+
+        System.out.println(username);
+        System.out.println("Password: " + password);
+    }
+
+    // path options to display data
+    private static void printDisplayOptionsForUser() {
+        System.out.println("\n1) Display Class report  \n2) Display Login Info of student");
+        //System.out.println("4) Display Student Average \n5) Display Class Average ");
+        System.out.println("3) Students with average below 65");
+        System.out.println("4) Students With Missing Assignments ");
+        System.out.println("\nEnter 1, 2, 3, 4: ");
+    }
+
+    // User input and paths to manipulate mark data
+    private static void markOptions(List classList, List markList, Scanner input) {
+        System.out.println("\n1) Add Marks \n2) Remove Marks \n3) Edit");
+        System.out.print("\nEnter 1, 2, or 3: ");
+        String options = input.nextLine();
+
+        if (options.equals("1")) {
+
+            // add marks
+            markList.set(indexOfStudent(classList), getMarks());
+            System.out.println(markList);
+        }
+
+        else if (options.equals("2")) {
+            // remove marks
+            int index = indexOfStudent(classList);
+            List empty = new ArrayList();
+
+            markList.set(index, empty);
+        }
+
+        else if (options.equals("3")) {
+            // edit marks
+            markList.set(indexOfStudent(classList), getMarks());
+        }
+    }
+
+    // path users can take to manipulate student data
+    private static void manageStudents(List classList, List markList, Scanner input) {
+        String options = getStudentOptions(input);
+
+        if (options.equals("1")) {
+
+            // newStudent
+            newStudent(classList, markList);
+        }
+
+        else if (options.equals("2")) {
+            // removeStudent
+            removeStudent(classList, markList);
+        }
+
+        else if (options.equals("3")) {
+            // editStudent
+            classList.set(indexOfStudent(classList), addStudentInfo());
+        }
+    }
+
+    // user input for paths to manipulate student data
+    private static String getStudentOptions(Scanner input) {
+
+        System.out.println("\n1) Add Student \n2) Remove Student \n3) Edit Student ");
+        System.out.print("\nEnter 1, 2 or 3: ");
+        return input.nextLine();
+    }
+
+    // remove a Student and their marks from classList and markList
+    private static void removeStudent(List classList, List markList) {
+        int index = indexOfStudent(classList);
+
+        classList.remove(index);
+        markList.remove(index);
+    }
+
+    // add a student to classList
+    private static void newStudent(List classList, List markList) {
+        List empty = new ArrayList();
+        // this stores the list returned by entering all the data into the full class list
+        classList.add(addStudentInfo());
+
+        markList.add(empty);
+    }
 
     //user inputs first name of student
     private static String getFirstName() {
@@ -226,6 +416,7 @@ public class main {
         return classAverage;
     }
 
+    // full name of students with missing assignments
     private static String missingAssignments(List classList, List markList) {
 
         Scanner input = new Scanner(System.in);
@@ -234,7 +425,7 @@ public class main {
         String assignments =  input.nextLine();
         int assignmentI = Integer.parseInt(assignments);
 
-        String badStudents = "";
+        String badStudents = "| ";
 
 
         for (int i = 0; i < classList.size(); i++) {
@@ -246,7 +437,7 @@ public class main {
                 String last = (String) studentname.get(1);
 
                 String fullname = first + " " + last;
-                badStudents += fullname + " ";
+                badStudents += fullname + " | ";
 
             }
 
@@ -254,6 +445,7 @@ public class main {
         return badStudents.trim();
     }
 
+    // List of every student's information
     private static List studentReport(List classList, List markLists) {
         List report = new ArrayList();
 
@@ -290,6 +482,7 @@ public class main {
     return report;
     }
 
+    // formatted table of every student's information
     private static void reportFormatted(List report) {
 
         System.out.println("\n|First Name|Last Name|Student Number|Student Average|Class Average|\n");
@@ -311,132 +504,5 @@ public class main {
         }
 
     }
-
-    // main
-    public static void main (String[] args){
-
-        // 2d list in which each indexed list has the student's name, number and grad date
-        List classList = new ArrayList();
-        List markList = new ArrayList();
-
-        Scanner input = new Scanner(System.in);
-
-        boolean done = false;
-
-        while (!done) {
-            // User chooses what they want to do
-            System.out.println("\n1) Manage Class List \n2) Manage Marks \n3) Display");
-            System.out.print("Enter 1, 2, 3: ");
-            String manage = input.nextLine();
-
-            if (manage.equals("1")) {
-
-                // user chooses how they want to manipulate the class list
-                System.out.println("\n1) Add Student \n2) Remove Student \n3) Edit Student ");
-                System.out.print("\nEnter 1, 2 or 3: ");
-                String options = input.nextLine();
-
-                if (options.equals("1")) {
-                    List empty = new ArrayList();
-                    // this stores the list returned by entering all the data into the full class list
-                    classList.add(addStudentInfo());
-
-
-                    markList.add(empty);
-                }
-
-                else if (options.equals("2")) {
-                    int index = indexOfStudent(classList);
-
-                    classList.remove(index);
-                    markList.remove(index);
-                }
-
-                else if (options.equals("3")) {
-                    classList.set(indexOfStudent(classList), addStudentInfo());
-                }
-            }
-
-            else if (manage.equals("2")) {
-                System.out.println("\n1) Add Marks \n2) Remove Marks \n3) Edit");
-                System.out.print("\nEnter 1, 2, or 3: ");
-                String options = input.nextLine();
-
-                if (options.equals("1")) {
-
-                    markList.set(indexOfStudent(classList), getMarks());
-                    System.out.println(markList);
-                }
-
-                else if (options.equals("2")) {
-                    int index = indexOfStudent(classList);
-                    List empty = new ArrayList();
-
-                    markList.set(index, empty);
-                }
-
-                else if (options.equals("3")) {
-                    markList.set(indexOfStudent(classList), getMarks());
-                }
-            }
-
-            else if (manage.equals("3")) {
-                System.out.println("\n1) Display Class report  \n2) Display Login Info of student");
-                //System.out.println("4) Display Student Average \n5) Display Class Average ");
-                System.out.println("3) Students with average below 65");
-                System.out.println("4) Students With Missing Assignments ");
-                System.out.println("\nEnter 1, 2, 3, 4: ");
-
-                String options = input.nextLine();
-
-                if (options.equals("1")) {
-
-                    reportFormatted(studentReport(classList, markList));
-
-                }
-
-//                else if (options.equals("2")) {
-//                    List studentMarks = correspondingMark(classList, markList);
-//                    System.out.println(studentMarks);
-//                }
-
-                else if (options.equals("2")) {
-
-                    String firstname = getFirstName();
-                    String lastname = getLastName();
-                    String studentnumber = getStudentNumber();
-                    String gradYear = getGraduatingYear();
-
-                    String username = username(firstname, lastname, gradYear);
-                    String password = passwordInformation(firstname, lastname, studentnumber);
-                    System.out.println(username);
-                    System.out.println("Password: " + password);
-                }
-
-                /*
-                else if (options.equals("4")) {
-                    double avg = studentAverage(correspondingMark(classList, markList));
-                    System.out.println("This student's average is: " + avg);
-                }
-
-                else if (options.equals("5")) {
-                    double classavg = classAverage(markList);
-                    System.out.println("The class average is: " + classavg);
-                }
-                */
-
-                else if (options.equals("3")) {
-                    String dangerzone = LessThan65(classList, markList);
-                    System.out.println(dangerzone);
-                }
-
-                else if (options.equals("4")) {
-                    String missing = missingAssignments(classList, markList);
-                    System.out.println(missing);
-                }
-
-            }
-        }
-    }
-
+    
 }
