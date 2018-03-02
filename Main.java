@@ -16,7 +16,11 @@ public class main {
         initializeProgram(classList, markList);
     }
 
-    // run the program without stopping
+    /**
+     * runs the program without stopping
+     * @param classList 2D list containing student basic info
+     * @param markList  2D list containing student mark info
+     */
     private static void initializeProgram(List classList, List markList) {
         Scanner input = new Scanner(System.in);
 
@@ -26,13 +30,19 @@ public class main {
         while (!done) {
 
             //user initial options
-            initialOptionPaths(classList, markList, input);
+            initialOptionPaths(classList, markList);
         }
     }
 
-    // Initial path options for program
-    private static void initialOptionPaths(List classList, List markList, Scanner input) {
-        String manage = getInitialOptions(input);
+    /**
+     * Display initial path options for program
+     * @param classList 2D list containing student basic info
+     * @param markList  2D list containing student mark info
+     */
+    private static void initialOptionPaths(List classList, List markList) {
+        Scanner input = new Scanner(System.in);
+
+        String manage = getInitialOptions();
 
         if (manage.equals("1")) {
 
@@ -49,13 +59,17 @@ public class main {
         else if (manage.equals("3")) {
 
             // displayOptions
-            displayOptions(classList, markList, input);
+            displayOptions(classList, markList);
 
         }
     }
 
-    // get initial path options to choose what to do
-    private static String getInitialOptions(Scanner input) {
+    /**
+     * get initial path options to choose what to do
+     * @return user input
+     */
+    private static String getInitialOptions() {
+        Scanner input = new Scanner(System.in);
 
         // User String input
         System.out.println("\n1) Manage Class List \n2) Manage Marks \n3) Display");
@@ -63,8 +77,13 @@ public class main {
         return input.nextLine();
     }
 
-    // Display paths
-    private static void displayOptions(List classList, List markList, Scanner input) {
+    /**
+     * Options to display
+     * @param classList 2D list containing student basic info
+     * @param markList  2D list containing student mark info
+     */
+    private static void displayOptions(List classList, List markList) {
+        Scanner input = new Scanner(System.in);
 
         // Initial options for user
         printDisplayOptionsForUser();
@@ -98,7 +117,9 @@ public class main {
         }
     }
 
-    // display login info from User input
+    /**
+     * Display login info froim user input
+     */
     private static void printLoginInfo() {
 
         String firstname = getFirstName();
@@ -504,5 +525,5 @@ public class main {
         }
 
     }
-    
+
 }
