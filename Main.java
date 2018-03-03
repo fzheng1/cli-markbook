@@ -1,11 +1,13 @@
-// required libraries
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * CLI-Marklist assignment
+ * @version 2.1
+ * @author Brandon Lew, Simon Minich, Joshua Voss, Franklin Zheng
+ */
 public class main {
-
-    // main
     public static void main (String[] args){
 
         // 2d list in which each indexed list has the student's name, number and grad date
@@ -47,13 +49,13 @@ public class main {
         if (manage.equals("1")) {
 
             // classListManipulation
-            manageStudents(classList, markList, input);
+            manageStudents(classList, markList);
         }
 
         else if (manage.equals("2")) {
 
             // markManipulation
-            markOptions(classList, markList, input);
+            markOptions(classList, markList);
         }
 
         else if (manage.equals("3")) {
@@ -105,15 +107,14 @@ public class main {
         else if (options.equals("3")) {
 
             // print students with avg < 65
-            String dangerzone = LessThan65(classList, markList);
-            System.out.println(dangerzone);
+            LessThan65(classList, markList);
         }
 
         else if (options.equals("4")) {
 
             // print students with missing assignments
-            String missing = missingAssignments(classList, markList);
-            System.out.println(missing);
+            missingAssignments(classList, markList);
+
         }
     }
 
@@ -134,7 +135,9 @@ public class main {
         System.out.println("Password: " + password);
     }
 
-    // path options to display data
+    /**
+     * Options to Display data
+     */
     private static void printDisplayOptionsForUser() {
         System.out.println("\n1) Display Class report  \n2) Display Login Info of student");
         //System.out.println("4) Display Student Average \n5) Display Class Average ");
@@ -143,8 +146,11 @@ public class main {
         System.out.println("\nEnter 1, 2, 3, 4: ");
     }
 
-    // User input and paths to manipulate mark data
-    private static void markOptions(List classList, List markList, Scanner input) {
+    /**
+     * User input and paths to manipulate mark data
+     */
+    private static void markOptions(List classList, List markList) {
+        Scanner input = new Scanner(System.in);
         System.out.println("\n1) Add Marks \n2) Remove Marks \n3) Edit");
         System.out.print("\nEnter 1, 2, or 3: ");
         String options = input.nextLine();
@@ -170,9 +176,13 @@ public class main {
         }
     }
 
-    // path users can take to manipulate student data
-    private static void manageStudents(List classList, List markList, Scanner input) {
-        String options = getStudentOptions(input);
+    /**
+     * path users can take to manipulate student data
+     * @param classList 2D list containing student basic info
+     * @param markList  2D list containing student mark info
+     */
+    private static void manageStudents(List classList, List markList) {
+        String options = getStudentOptions();
 
         if (options.equals("1")) {
 
@@ -191,15 +201,23 @@ public class main {
         }
     }
 
-    // user input for paths to manipulate student data
-    private static String getStudentOptions(Scanner input) {
+    /**
+     * user input options to manipulate student data
+     * @return User input
+     */
+    private static String getStudentOptions() {
+        Scanner input = new Scanner(System.in);
 
         System.out.println("\n1) Add Student \n2) Remove Student \n3) Edit Student ");
         System.out.print("\nEnter 1, 2 or 3: ");
         return input.nextLine();
     }
 
-    // remove a Student and their marks from classList and markList
+    /**
+     * remove a Student and their marks from classList and markList
+     * @param classList 2D list containing student basic info
+     * @param markList  2D list containing student mark info
+     */
     private static void removeStudent(List classList, List markList) {
         int index = indexOfStudent(classList);
 
@@ -207,7 +225,11 @@ public class main {
         markList.remove(index);
     }
 
-    // add a student to classList
+    /**
+     * add a student's information to both class and mark lists
+     * @param classList 2D list containing student basic info
+     * @param markList  2D list containing student mark info
+     */
     private static void newStudent(List classList, List markList) {
         List empty = new ArrayList();
         // this stores the list returned by entering all the data into the full class list
@@ -216,7 +238,10 @@ public class main {
         markList.add(empty);
     }
 
-    //user inputs first name of student
+    /**
+     * user inputs first name of student
+     * @return String first name of student
+     */
     private static String getFirstName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter first name: ");
@@ -225,7 +250,10 @@ public class main {
         return firstName;
     }
 
-    //user inputs last name of student
+    /**
+     * user inputs last name of student
+     * @return String last name of student
+     */
     private static String getLastName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter last name: ");
@@ -234,7 +262,10 @@ public class main {
         return lastName;
     }
 
-    // user inputs student number
+    /**
+     * user inputs student number
+     * @return String student number of student
+     */
     private static String getStudentNumber() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter student ID: ");
@@ -243,7 +274,10 @@ public class main {
         return Integer.toString(studentNumber);
     }
 
-    // user inputs graduating year
+    /**
+     * user inputs graduating year of student
+     * @return String graduating year of student
+     */
     private static String getGraduatingYear() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter graduating year: ");
@@ -252,7 +286,10 @@ public class main {
         return Integer.toString(graduatingYear);
     }
 
-    // gets all info for a certain student from the user and returns a list of the student's info
+    /**
+     * stores Student's full name and student number into a list
+     * @return List of a student's basic information
+     */
     private static List addStudentInfo() {
         System.out.println("\nAdd student information");
 
@@ -261,25 +298,25 @@ public class main {
         String nameF = getFirstName();
         String nameL = getLastName();
         String studentNo = getStudentNumber();
-        //String gradYear = getGraduatingYear();
 
         info.add(0, nameF);
         info.add(1, nameL);
         info.add(2, studentNo);
-        //info.add(3, gradYear);
-
 
         System.out.println("You have added: " + nameF + " | " + nameL + " | " + studentNo);
         return info;
     }
 
-    // user inputs a student's grades
+    /**
+     * user inputs a student's grades based on the number of assignments to be graded
+     * @return List of a student's grades on completed assignments
+     */
     private static List getMarks() {
 
         //ask user how many marks are being entered
         List empty = new ArrayList();
         Scanner input = new Scanner(System.in);
-        System.out.print("How many assignemt marks are being entered?: ");
+        System.out.print("How many assignment marks are being entered?: ");
         int numMarks = input.nextInt();
 
         List studentMarks = new ArrayList();
@@ -299,8 +336,11 @@ public class main {
         return studentMarks;
     }
 
-    // returns index number of student given his full name from the class list, if name is not found, returns -1
-    // call command is int x = indexOfStudent(classList);
+    /**
+     * find the location of a student in the class list based on student number in order to store mark data in the same index
+     * @param classList 2D list containing student basic info
+     * @return int index number of student
+     */
     private static int indexOfStudent (List classList){
         Scanner input = new Scanner(System.in);
 
@@ -326,32 +366,15 @@ public class main {
                 }
             }
         }
-        // if name not found in class list return -1
+        // should never reach this point
         return -1;
     }
 
-    // this function is useless plz ignore
-    private static List addMarklist(List classList) {
-
-        List markList = new ArrayList();
-        System.out.println(classList);
-
-        int index = indexOfStudent(classList);
-
-        for (int i = 0; i < classList.size(); i++) {
-            markList.add("");
-        }
-        System.out.println(markList);
-
-
-        markList.add(index, getMarks());
-
-        System.out.println(markList);
-
-        return markList;
-    }
-
-    // calculates a student's average
+    /**
+     *  calculates a student's average
+     * @param studentMarks List of an individual student's marks
+     * @return double average of the student's marks
+     */
     private static double studentAverage(List studentMarks) {
 
         double addedEntries = 0;
@@ -365,62 +388,71 @@ public class main {
         return (addedEntries/studentMarks.size());
     }
 
-    // finds the list of the student's grades
-    private static List correspondingMark(List classList, List markList) {
+    /**
+     * prints list of students with avg less than 65
+     * @param classList 2D list containing basic student info
+     * @param markList  2D list containing student mark info
+     */
+    private static void LessThan65(List classList, List markList) {
 
-
-        int index = indexOfStudent(classList);
-
-        List studentmarks = (List) markList.get(index);
-
-        return studentmarks;
-
-    }
-
-    // prints list of students with avg less than 65
-    private static String LessThan65(List classList, List markList) {
-        String dangerzone = "";
-
+        // loop for number of students
         for (int i=0; i<classList.size(); i++) {
+
+            // get marks of student at position i
             List studentMarks = (List) markList.get(i);
 
+            // check if student has avg below 65
             if (studentAverage(studentMarks) <= 65) {
+                String dangerzone = "| ";
 
-                // loop within the 2d list to first make the full name then check if it matches up with input
-                for (int j = 0; j < classList.size(); j++) {
+                // first and last names are stored within the first 2 indexes of inner list
+                for (int k = 0; k < 2; k++) {
 
+                    // check each inner list within classList
+                    List name = (List) classList.get(i);
+
+                    // retrieves the first name first then last name from inner list and adds them together
+                    String full = name.get(k).toString();
+                    dangerzone += full + " | ";
                 }
-                    // first and last names are stored within the first 2 indexes of inner list
-                    for (int k = 0; k < 2; k++) {
 
-                        // check each inner list within classList
-                        List first = (List) classList.get(i);
-
-                        // retrieves the first name first then last name from inner list and adds them together
-                        String full = " " + first.get(k).toString();
-                        dangerzone += full;
-                    }
+                System.out.println(dangerzone);
             }
-
         }
-        return dangerzone.trim();
     }
 
-    // returns username of student in format {firstname}.{lastname}{last two digits of grad year}@ycdsbk12.ca
+    /**
+     * username of student in format {firstname}.{lastname}{last two digits of grad year}@ycdsbk12.ca
+     * @param firstname first name of student
+     * @param lastname last name of student
+     * @param year graduating year of student
+     * @return String formatted login email of student
+     */
     private static String username(String firstname, String lastname, String year){
 
         return ("Login email: " + firstname + "." + lastname + year.substring(year.length()-2) + "@ycdsbk12.ca");
     }
 
-    // returns password of student in format first initial}{lowercase last initial}{student number}
+    /**
+     * password of student in format first initial}{lowercase last initial}{student number}
+     * @param firstname first name of student
+     * @param lastname last name of student
+     * @param studentNumber student's student number
+     * @return String formatted password of student
+     */
     private static String passwordInformation(String firstname, String lastname, String studentNumber){
 
+        // make first initial of first name capital and first initial of last name lower case
         String upperFirstInitial = String.valueOf(Character.toUpperCase(firstname.charAt(0)));
         String lowerLastInitial = String.valueOf(Character.toLowerCase(lastname.charAt(0)));
         return (upperFirstInitial + lowerLastInitial + studentNumber);
     }
 
-    //calculates class average
+    /**
+     * calculates class average
+     * @param markList 2D list containing student mark info
+     * @return double average of entire class based on individual student averages
+     */
     private static double classAverage(List markList){
 
         double classTotal = 0;
@@ -437,8 +469,12 @@ public class main {
         return classAverage;
     }
 
-    // full name of students with missing assignments
-    private static String missingAssignments(List classList, List markList) {
+    /**
+     * full names of students with missing assignments
+     * @param classList 2D list containing basic student info
+     * @param markList 2D list containing student mark info
+     */
+    private static void missingAssignments(List classList, List markList) {
 
         Scanner input = new Scanner(System.in);
 
@@ -446,56 +482,65 @@ public class main {
         String assignments =  input.nextLine();
         int assignmentI = Integer.parseInt(assignments);
 
-        String badStudents = "| ";
-
 
         for (int i = 0; i < classList.size(); i++) {
             List studentmarks = (List) markList.get(i);
+            String badStudents = "| ";
 
+            // check if number of stored marks is less than number of required assignments
             if (studentmarks.size() < assignmentI) {
                 List studentname = (List) classList.get(i);
                 String first = (String) studentname.get(0);
                 String last = (String) studentname.get(1);
 
-                String fullname = first + " " + last;
+                String fullname = first + " | " + last;
                 badStudents += fullname + " | ";
 
             }
-
+            System.out.println(badStudents);
         }
-        return badStudents.trim();
     }
 
-    // List of every student's information
-    private static List studentReport(List classList, List markLists) {
+    /**
+     * List of student's basic information with their rounded average and class average
+     * @param classList 2D list containing basic student info
+     * @param markList 2D list containing student mark info
+     * @return 2D List of every student's mark report
+     */
+    private static List studentReport(List classList, List markList) {
         List report = new ArrayList();
 
+        // loop over all students
         for (int i = 0; i < classList.size(); i++) {
 
             List studentreport = new ArrayList();
 
-            List studentMarks =(List) markLists.get(i);
+            List studentMarks =(List) markList.get(i);
             List studentList = (List) classList.get(i);
 
-
+            // round student average to 2 decimal places
             double studentavg = studentAverage(studentMarks);
             double roundedavg = Math.round(studentavg*100.0)/100.0;
             String stringAvg = Double.toString(roundedavg);
 
-            double classavg = classAverage(markLists);
+            // round class average to 2 decimal places
+            double classavg = classAverage(markList);
             double classrounded = Math.round(classavg*100.0)/100.0;
             String stringclassavg = Double.toString(classrounded);
 
+            // get full name and student number of student
             String fname = (String) studentList.get(0);
             String lname = (String) studentList.get(1);
             String studentNumber = (String) studentList.get(2);
 
+            // add all elements to a List
             studentreport.add(fname);
             studentreport.add(lname);
             studentreport.add(studentNumber);
             studentreport.add(stringAvg);
             studentreport.add(stringclassavg);
 
+            // add list into 2D List with other student reports
             report.add(studentreport);
 
         }
@@ -503,7 +548,10 @@ public class main {
     return report;
     }
 
-    // formatted table of every student's information
+    /**
+     * formatted version of all student reports
+     * @param report 2D List of every student's basic information and their rounded average compared to the class average
+     */
     private static void reportFormatted(List report) {
 
         System.out.println("\n|First Name|Last Name|Student Number|Student Average|Class Average|\n");
@@ -521,9 +569,6 @@ public class main {
             }
 
             System.out.println(formatted);
-
         }
-
     }
-
 }
